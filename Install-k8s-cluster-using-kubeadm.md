@@ -88,7 +88,7 @@ kubeadm version
 kubectl version --short
 ```
 
-### Initialize Kubernetes on Master Node
+#Initialize Kubernetes on Master Node
 ```
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
