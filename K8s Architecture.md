@@ -24,3 +24,6 @@
 
 #### Kubernetes follows client-server architecture. Wherein, we have master installed on one machine and the worker nodes on separate Linux machines.
 
+![image](https://github.com/awsbatch/my-k8s/assets/110165635/e69da1b8-e790-4b93-897f-191310ee5969)
+
+### Kubernetes has a decentralized architecture that does not handle tasks sequentially. It functions based on a declarative model and implements the concept of a desired state.
