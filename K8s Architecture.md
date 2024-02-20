@@ -62,4 +62,37 @@
 # Container runtime engine
 - #### The container runtime engine is responsible for running the containers on the worker node. The most popular container runtime engine is Docker.
 
+
+# Worker Node and its components
+
+![image](https://github.com/awsbatch/my-k8s/assets/110165635/b28f37a3-1909-4376-a545-60e2e7492a7a)
+
+#### Worker nodes listens to the API Server for new work assignments. They execute the work assignments and then report the results back to the Kubernetes Master node. Each worker node is controlled by the Master Node.
+
+# Kubelet
+- #### The kubelet runs on every node in the cluster. It is the principal Kubernetes agent. It interacts with etcd store to read configuration details and write values. It watches for tasks sent from the API Server, executes the task, and reports back to the Master. It also monitors pods and reports back to the control panel if a pod is not fully functional. Based on that information, the Master can then decide how to allocate tasks and resources to reach the desired state.
+- #### Ensures that containers are running in a Pod on the node.
+- #### The primary agent that runs on each worker node.
+- #### Communicates with the Kubernetes control plane, specifically with the API server on the master node.
+
+
+# Container Runtime
+- #### The container runtime pulls images from a container image registry and starts and stops containers. A 3rd party software or plugin, such as Docker, usually performs this function.
+- #### The software responsible for running containers, like Docker or containerd.
+- #### Interacts with the underlying operating system to start, stop, and manage containers.
+
+# Kube-proxy
+- #### The kube-proxy makes sure that each node gets its IP address, implements local iptables and rules to handle routing and traffic load-balancing. This ensures that the necessary rules are in place on the worker nodes to allow the containers running on them to reach each other.
+- #### Maintains network rules on nodes, enabling communication between Pods and external traffic.
+- #### Enables communication between Pods on different nodes and allows external traffic to reach the Pods.
+
+
+
+# Kubernetes Objects
+
+
+
+
+
+
   
