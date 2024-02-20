@@ -87,10 +87,49 @@
 - #### Enables communication between Pods on different nodes and allows external traffic to reach the Pods.
 
 
+![image](https://github.com/awsbatch/my-k8s/assets/110165635/2531bcf0-b3ca-4c3a-980a-71cc3433cd0c)
+
+
 
 # Kubernetes Objects
 
+### In Kubernetes, objects are persistent entities that represent the state of the cluster. These objects describe the desired state of a cluster or its components and can be used to create, update, or delete resources. The following are some of the common types of objects in Kubernetes:
 
+# Pod:
+- The smallest deployable units in Kubernetes.
+- Consists of one or more containers that share the same network namespace.
+
+# Service:
+- Abstracts the access to a set of Pods, providing a stable endpoint for communication.
+- Types include ClusterIP, NodePort, LoadBalancer, and ExternalName.
+
+# Volume:
+- Provides data persistence for containers.
+- Can be used by one or more containers in a Pod.
+
+# Namespace:
+- A way to divide cluster resources between multiple users (via resource quota), or to partition resources within a user.
+
+# Deployment:
+- Allows you to declaratively define and manage application deployments.
+- Ensures a specified number of replica Pods are running at all times.
+
+# ConfigMap:
+- Enables you to separate configuration details from application code.
+- Can be used to store non-sensitive configuration data.
+
+# Secret:
+- Stores sensitive information, such as passwords or API keys.
+- Encoded or encrypted data that can be decoded by the Kubelet when mounting secrets into Pods. Learn more about Kubernetes secrets
+
+# Ingress:
+- Manages external access to services within a cluster.
+- Acts as a layer 7 (application layer) HTTP load balancer.
+
+# StatefulSet:
+- Manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.
+
+#### These components work together to provide a robust and scalable container orchestration platform, allowing users to manage and scale containerized applications with ease. Understanding the role of each component is crucial for effective Kubernetes administration and application deployment.
 
 
 
