@@ -29,3 +29,11 @@
 ### Kubernetes has a decentralized architecture that does not handle tasks sequentially. It functions based on a declarative model and implements the concept of a desired state.
 
 # Master Node (Control Plane) and its components
+
+![image](https://github.com/awsbatch/my-k8s/assets/110165635/753b0fba-7412-4387-8126-e5270960fa0c)
+
+- The Kubernetes Master receives input from CLI or UI via an API. These are the commands which you provide to Kubernetes. The master node is the main entry point for all administrative tasks you want to perform on the cluster. It controls all the worker nodes.
+
+- You define pods, replica sets, and services that you want Kubernetes to maintain. For example what container image to use, which ports to expose, and how many pod replicas to run etc..
+
+- You also provide the parameters of the desired state for the application(s) running in that cluster.
