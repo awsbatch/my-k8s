@@ -1,6 +1,6 @@
 ### Pods
 
-# List all pods in namespace #default
+# List all pods in namespace #<default>
 ```
 kubectl get pods
 ```
@@ -11,4 +11,9 @@ kubectl get pod
 # or
 ```
 kubectl get po
+```
+# List all pods in other namespaces
+
+```
+kubectl get pods -n <namespace_name>
 ```
