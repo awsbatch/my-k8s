@@ -1,9 +1,14 @@
-![Alt text](image.png)
+### Pods
 
-# my-k8s
-
-########### This is basic commands #####################
-
+# List all pods in namespace <default>
 ```
 kubectl get pods
+```
+# or
+```
+kubectl get pod
+```
+# or
+```
+kubectl get po
 ```
