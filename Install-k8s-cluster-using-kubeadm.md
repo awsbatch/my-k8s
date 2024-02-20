@@ -12,7 +12,7 @@ EC2 Instance         : t3a.small
 Disk Size            : 30 GB
 ```
 
-# ON MASTER NODE
+# ON WORKER AND MASTER NODE
 
 ### Switch to root user & Update repository of ubuntu
 ```
