@@ -13,3 +13,68 @@
 
 - #### For example you can have separate namespaces created for different application life cycle environments such as development, staging, production etc. for a project or an application.
 
+![image](https://github.com/awsbatch/my-k8s/assets/110165635/df5119f6-f805-46d2-9dfc-90e7a11b6772)
+
+#### Names of all the kubernetes resources are required to be unique within a namespace, but not across namespaces. And this feature of having same resource object names across namespaces comes handy in application life cycle environments we discussed above.
+
+# default Namespace in Kubernetes
+
+By design, when you provision a Kubernetes cluster it will start with a default namespace to hold the default set of Pods, Services, and Deployments used by the cluster. The objects part of this namespace will be part of no other namespaces.
+
+# By default, Kubernetes provides three namespaces:
+
+- ### default: The default namespace for objects that don't have a namespace specified.
+- ### kube-system: The namespace for Kubernetes system objects, such as kube-dns, kube-proxy, and others.
+- ### kube-public: This namespace is automatically created and is readable by all users. It is primarily used for resources that should be accessible to all users, such as cluster information.
+
+# List all Namespaces part of a Kubernetes cluster->
+
+```
+root@kube-master:~# kubectl get namespaces
+```
+
+```
+root@kube-master:~# kubectl describe namespaces default
+```
+
+# Create a new Namespace
+
+### Like any other Kubernetes object Namespaces also can be created in two ways.
+- Using command line tool kubectl
+- Using yaml manifest file
+
+```
+root@kube-master:~# kubectl create namespace test-ns
+```
+
+## Create Namespace using a yaml manifest file->
+
+Like any other Kubernetes resource Namespaces also can be created by applying a manifest file.
+
+```
+root@kube-master:~# cat namespace-demo.yml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo-namespace
+```
+
+## Apply the file and create the Namespace->
+```
+root@kube-master:~# kubectl apply -f namespace-demo.yml
+```
+
+## Launch kubernetes objects in newly created Namespace
+
+```
+root@kube-master:~# kubectl run namespace-demo-nginx --image=nginx --namespace=namespace-demo
+```
+
+## List the Pod created within that Namespace->
+
+```
+root@kube-master:~# kubectl get pods --namespace=namespace-demo
+NAME                   READY   STATUS    RESTARTS   AGE
+namespace-demo-nginx   1/1     Running   0          17s
+```
+
