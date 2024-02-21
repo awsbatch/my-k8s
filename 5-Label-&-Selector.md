@@ -150,3 +150,47 @@ selector:
 ```
 
 
+# Selector Types
+
+Kubernetes supports two type of selectors −
+
+- Equality-based selectors
+- Set-based selectors
+
+### Equality-based Selectors ->
+
+They allow filtering by key and value. Operators used as part of this are: =, ==, !=
+
+#### Examples:
+
+Here are few pods running in my environment. To view them by their Label name run the following command:
+
+```
+kubectl get pods --show-labels
+```
+
+```
+kubectl get pods environment = prod   --show-labels  
+```
+
+```
+kubectl get pods environment != prod   --show-labels  
+```
+
+### Set-based Selectors->
+
+Set-based selectors allow filtering of keys according to a set of values. Operators used as part of this are: in, notin, exists.
+
+### Examples:
+
+To view all the pods with labels environment=prod and environment=staging.
+
+```
+kubectl get pods -l 'environment in (prod,staging)' --show-labels
+```
+
+```
+kubectl get pods -l 'environment notin (staging)' --show-labels
+```
+
+
