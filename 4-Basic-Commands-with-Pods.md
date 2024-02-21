@@ -35,3 +35,11 @@ It solves port allocation issue. With containers we can use a specific host port
 
 # Lifecycle of a Pod
 - Pods follow a defined lifecycle, starts with the Pending state, moving through Running if at least one of its containers starts OK, and then through either the Succeeded or Failed phases depending on whether any container in the Pod terminated in failure state.
+
+
+![image](https://github.com/awsbatch/my-k8s/assets/110165635/b4eb6bc4-e907-4ecf-8a38-f70ca5dc025d)
+
+
+#### Here are the possible values for phase:
+
+
