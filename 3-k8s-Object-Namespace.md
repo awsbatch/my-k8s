@@ -30,11 +30,11 @@ By design, when you provision a Kubernetes cluster it will start with a default 
 # List all Namespaces part of a Kubernetes cluster->
 
 ```
-root@kube-master:~# kubectl get namespaces
+kubectl get namespaces
 ```
 
 ```
-root@kube-master:~# kubectl describe namespaces default
+kubectl describe namespaces default
 ```
 
 # Create a new Namespace
@@ -44,7 +44,11 @@ root@kube-master:~# kubectl describe namespaces default
 - Using yaml manifest file
 
 ```
-root@kube-master:~# kubectl create namespace test-ns
+kubectl create namespace test-ns
+```
+# OR
+```
+kubectl create ns test-ns
 ```
 
 ## Create Namespace using a yaml manifest file->
@@ -52,7 +56,7 @@ root@kube-master:~# kubectl create namespace test-ns
 Like any other Kubernetes resource Namespaces also can be created by applying a manifest file.
 
 ```
-root@kube-master:~# cat namespace-demo.yml
+cat   namespace-demo.yml
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -61,22 +65,36 @@ metadata:
 
 ## Apply the file and create the Namespace->
 ```
-root@kube-master:~# kubectl apply -f namespace-demo.yml
+kubectl apply -f namespace-demo.yml
 ```
 
 ## Launch kubernetes objects in newly created Namespace
 
 ```
-root@kube-master:~# kubectl run namespace-demo-nginx --image=nginx --namespace=namespace-demo
+kubectl run namespace-demo-nginx --image=nginx --namespace=namespace-demo
 ```
 
 ## List the Pod created within that Namespace->
 
 ```
-root@kube-master:~# kubectl get pods --namespace=namespace-demo
-NAME                   READY   STATUS    RESTARTS   AGE
-namespace-demo-nginx   1/1     Running   0          17s
+kubectl get pods --namespace=namespace-demo
 ```
+## List All Resources in a Namespace: 
+```
+kubectl get all -n my-namespace --show-all
+```
+
+## Monitor Namespace Events in Real-time:
+
+```
+kubectl get events -n my-namespace --watch
+```
+## Edit Namespace Configuration:
+
+```
+kubectl edit namespace my-namespace
+```
+
 ## Changing default Namespace by setting the context
 
 When you are working on a project you want to avoid providing the same namespace for each of your commands while creating or modifying objects. This can be done by changing the default namespace.
@@ -90,18 +108,18 @@ A context is a group of access parameters. Each context contains a Kubernetes cl
 ## To list your current context configuration details, type:
 
 ```
-root@kube-master:~# kubectl config get-contexts
+kubectl config get-contexts
 ```
 
 ## Change the namespace used by that context->
 ```
-root@kube-master:~# kubectl config set-context $(kubectl config current-context) --namespace=namespace-demo
+kubectl config set-context $(kubectl config current-context) --namespace=namespace-demo
 ```
 
 # Let's try it out by creating another pod.
 
 ```
-root@kube-master:~# kubectl run namespace-context-demo-nginx --image=nginx
+kubectl run namespace-context-demo-nginx --image=nginx
 ```
 
 # Rename the Namespace
