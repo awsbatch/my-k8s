@@ -108,5 +108,88 @@ spec:
       - containerPort: 80
 ```
 
+# The manifest file you've shown defines a Kubernetes Pod resource. Let's break down its fields to understand what each one means:
+
+- **apiVersion:** v1: This specifies the version of the Kubernetes API you're using to create this object. For a Pod, the API version is v1.
+
+- **kind:** Pod: This indicates the kind of Kubernetes object you want to create. In this case, it's a Pod, which is the smallest deployable unit in Kubernetes that can be created and managed.
+
+- **metadata:** This section provides data that uniquely identifies the Pod, including its name, namespace, and labels:
+  - **name:** lco-pod-demo-2: This is the name of the Pod. It's unique within the namespace.
+  - **namespace:** default: This specifies the namespace in which the Pod will be created. If not specified, it defaults to the default namespace.
+  - **labels:** Key-value pairs that are attached to the Pod. These can be used to organize and to select subsets of objects.
+    - **demo: pod:** A label with the key demo and the value pod. Labels can be very useful for querying and selecting objects based on their purpose or characteristics.
+
+- **spec:** This section describes the Pod's desired state:
+  - **containers:** A list of containers that should be part of this Pod:
+    - **name:** httpd: The name of the container, which is httpd in this case. This is how you can refer to this container within the Pod.
+    - **image:** docker.io/httpd: The Docker image for the container. This specifies that the container should run the httpd server image from Docker Hub.
+    - **imagePullPolicy:** IfNotPresent: This tells Kubernetes to pull the image only if it is not already present locally. This can speed up deployment if the image is already available on the node.
+    - **ports:**
+      - **containerPort:** 80: This specifies that the container listens on port 80. This information can be used by services and other networking resources to route traffic to this container.
+
+
+## Apply and create the Pod
+
+```
+kubectl apply -f lco-pod-demo.yml
+```
+## Verify the status of Pod created
+
+```
+kubectl get pod
+```
+
+## Describe the pod 
+
+```
+kubectl describe lco-pod-demo-2
+```
+
+# How to login into pod
+
+```
+kubectl exec -it [POD_NAME] -- /bin/sh
+```
+
+# how to create multicontainer pod
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-multi-container-pod
+  labels:
+    purpose: demonstrate-multi-container
+spec:
+  containers:
+  - name: my-nginx
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+
+  - name: my-redis
+    image: redis:alpine
+    ports:
+    - containerPort: 6379
+```
+# Create Pod
+
+```
+kubectl apply -f multicontainer.yml
+```
+
+# How to login in to a Pod if multiple container exist on it.
+
+```
+kubectl exec -it my-multi-container-pod -c redis-container -- /bin/sh
+```
+
+
+
+
+
+
+
 
 
