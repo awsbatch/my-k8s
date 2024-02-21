@@ -42,4 +42,71 @@ It solves port allocation issue. With containers we can use a specific host port
 
 #### Here are the possible values for phase:
 
+![image](https://github.com/awsbatch/my-k8s/assets/110165635/ece80ca5-92ca-4ce1-b6d9-4ebbf5eb4709)
+
+
+
+# Pod Lifetime
+
+- Kubernetes pods are transient in nature, if a pod (or the node it executes on) fails, Kubernetes automatically creates a new instance of that pod on the node they were scheduled to run until they die or node itself goes down in order to continue operations. Each Pod will have a unique id assigned (UID) to it.
+
+- A running Pod can never be "rescheduled" to a different node as Kubernetes does not support live migration of pods from one host to another. You can always create a new identical pod.
+
+- Pods by nature doesn't self-heal. This is controlled by another Kubernetes components known as Controllers. They manage the Pods throughout their lifecycle.
+
+
+
+# Create a Kubernetes Pod
+#### There are two methods of creating a Kubernetes Pods.
+
+# Method 1 - using kubectl command
+#### Kubectl command controls the Kubernetes Cluster.
+
+```
+kubectl run lco-pod-demo --image=nginx
+```
+
+### Verify the status of Pod created -
+
+```
+kubectl get pods
+```
+### Describe the Pod created in last step to get more details about it -
+
+```
+kubectl describe pod lco-pod-demo
+```
+
+#### Few fields which requires your attention here are -
+
+- Status
+- IP
+- Labels
+- Container specs
+- Events
+
+
+# Method 2 - using yaml manifest file
+
+
+Here is our yaml manifest file which we are going to use to create a Pod.
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+   name: lco-pod-demo-2
+   namespace: default
+   labels:
+     demo: pod
+spec:
+  containers:
+  - name: httpd
+    image: docker.io/httpd
+    imagePullPolicy: IfNotPresent
+    ports:
+      - containerPort: 80
+```
+
+
 
