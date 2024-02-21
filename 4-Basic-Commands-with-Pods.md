@@ -26,7 +26,7 @@ It solves port allocation issue. With containers we can use a specific host port
 # What is the job of a Pod?
 - At a very high level a Pod is responsible to carry your application running inside within a container.
 
-3 How does a pod work?
+# How does a pod work?
 - Pods are group of containers working together to process a set of desired work. When we create a Pod either using an YAML manifest file or by the kubectl command we specify the desired behavior a pod should acquit itself.
 
 - Kubernetes Controllers such as StatefulSets, Deployments and DaemonSet are responsible for creating workloads using Pods. They manage Pods throughout their lifecycle for example while rolling out updates, scaling up/down ReplicaSets and managing their health within the cluster.
