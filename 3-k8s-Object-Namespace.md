@@ -104,6 +104,22 @@ root@kube-master:~# kubectl config set-context $(kubectl config current-context)
 root@kube-master:~# kubectl run namespace-context-demo-nginx --image=nginx
 ```
 
+# Rename the Namespace
+
+- #### Not recommended. It shouldn't be done as its not a standard practice to rename a Kubernetes namespace.
+
+# Deleting a Namespace
+- #### Once you are done with your work and feel that you no longer require a namespace, delete it.
+
+- #### But be cautious here! Because deleting a namespace not only deletes the namespace, but it deletes all the resources deployed within as well. So this is quite dangerous if you are not careful.
+
+- #### The best practice is always list the resources associated with a namespace before deleting to verify the objects that will be removed:
+
 ```
-root@kube-master:~# kubectl get sa default -o jsonpath='{.metadata.namespace}'
+ kubectl get all --namespace=namespace-demo
+```
+#### Now if you are sure and comfortable with the deletion scope go ahead and delete it by running following command:
+
+```
+kubectl delete namespaces namespace-demo
 ```
