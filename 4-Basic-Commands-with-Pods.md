@@ -185,6 +185,58 @@ kubectl apply -f multicontainer.yml
 kubectl exec -it my-multi-container-pod -c redis-container -- /bin/sh
 ```
 
+# Check Pod Logs:
+```
+kubectl logs <pod_name>
+```
+
+# how to check events of all objects
+
+```
+kubectl logs <pod_name>
+```
+
+## Specific Namespace
+
+```
+kubectl get events -n <namespace>
+```
+
+Additionally, you can use the --field-selector flag to filter events based on specific criteria. For example, to only display events related to pods, you can use:
+
+```
+kubectl get events --field-selector involvedObject.kind=Pod
+```
+
+# how to delete pod
+
+```
+kubectl delete pod <pod_name>
+```
+
+### From specific Namespace
+
+```
+kubectl delete pod <pod_name> -n <namespace>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
