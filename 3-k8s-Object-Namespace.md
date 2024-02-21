@@ -77,4 +77,33 @@ root@kube-master:~# kubectl get pods --namespace=namespace-demo
 NAME                   READY   STATUS    RESTARTS   AGE
 namespace-demo-nginx   1/1     Running   0          17s
 ```
+## Changing default Namespace by setting the context
 
+When you are working on a project you want to avoid providing the same namespace for each of your commands while creating or modifying objects. This can be done by changing the default namespace.
+
+To achieve this we need to change the context settings.
+
+## What is Context in Kubernetes?
+
+A context is a group of access parameters. Each context contains a Kubernetes cluster, a user, and a namespace. The current context is the cluster that is currently the default for kubectl. All kubectl commands run against that cluster.
+
+## To list your current context configuration details, type:
+
+```
+root@kube-master:~# kubectl config get-contexts
+```
+
+## Change the namespace used by that context->
+```
+root@kube-master:~# kubectl config set-context $(kubectl config current-context) --namespace=namespace-demo
+```
+
+# Let's try it out by creating another pod.
+
+```
+root@kube-master:~# kubectl run namespace-context-demo-nginx --image=nginx
+```
+
+```
+root@kube-master:~# kubectl get sa default -o jsonpath='{.metadata.namespace}'
+```
