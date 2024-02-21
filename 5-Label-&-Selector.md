@@ -51,4 +51,102 @@ labels:
     app: nginx
 ```
 
-We can attach Labels to objects during their creation time or can add or modify them later as well. Each Kubernetes object can have a set of key/value labels defined. Each label key must be unique for a given object.
+#### We can attach Labels to objects during their creation time or can add or modify them later as well. Each Kubernetes object can have a set of key/value labels defined. Each label key must be unique for a given object.
+
+
+# Valid label values
+
+
+#### When working with Kubernetes labels, there are restrictions concerning the length and allowed values. Specifically, a valid label value:
+
+- must be 63 characters or less (can be empty),
+- unless empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]),
+- can only contain dashes (-), underscores (_), dots (.), and alphanumerics
+
+For example, the following pod manifest has two valid labels, environment: production and app: nginx
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: label-demo
+  labels:
+    environment: production
+    app: nginx
+  spec:
+    containers:
+    - name: nginx
+      image: nginx:1.14.2
+      ports:
+      - containerPort: 80
+```
+
+## How to manage Kubernetes labels?
+
+```
+ kubectl get pods --show-labels
+```
+
+#### we can use the label subcommand to add another label to the pod.
+```
+kubectl label pods labelex owner=ravendra
+```
+
+####  we can use the --overwrite flag to change the value for the existing label key.
+
+```
+kubectl label pods labelex owner=rahul --overwrite
+```
+
+#### use the short option -l to select the pod with label env=develop.
+
+```
+kubectl get pods -l env=develop
+```
+
+#### We can now list the pods where the environment is either develop or prod by using the set-based selector. For example:
+
+```
+kubectl get pods -l 'env in (prod, develop)'
+```
+
+#### Other actions also support label selection. For example, we can delete both the pods using this command:
+
+```
+kubectl delete pods -l 'env in (prod, develop)'
+```
+
+
+
+
+# What are Selectors in Kubernetes?
+
+- Selectors are used to filter out objects based on their assigned Labels. Labels and Selectors goes hand in hand.
+
+For example Selectors will help us filter out objects like give all the application pods which are of type staging.
+
+
+# Example syntax to define Selectors
+
+```
+# where environment is production
+selector:
+    matchLabels:
+      environment: prod
+```
+
+```
+# where environment is development
+selector:
+    matchLabels:
+      environment: dev
+```
+
+```
+# where environment is staging
+selector:
+    matchLabels:
+      environment: staging
+```
+
+
