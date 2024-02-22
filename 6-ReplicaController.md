@@ -77,6 +77,9 @@ kubectl get rs
 kubectl describe rc myapp-rc
 ```
 
+```
+kubectl get pods --selector=app
+```
 
 # Changing the pod template
 - A ReplicationController’s pod template can be modified at any time. Changing the pod template will only affect the newly created pods and will have no impact on the existing pods which are in running state:
