@@ -116,7 +116,17 @@ kubectl get pods -l 'env in (prod, develop)'
 kubectl delete pods -l 'env in (prod, develop)'
 ```
 
+### How to Remove labels
+```
+kubectl get pod --show-labels
+```
+NAME     READY   STATUS    RESTARTS   AGE   LABELS
+my-pod   1/1     Running   0          10m   run=my-pod
 
+```
+kubectl label pod my-pod run-
+```
+pod/my-pod unlabeled
 
 
 # What are Selectors in Kubernetes?
