@@ -202,4 +202,20 @@ kubectl get pods -l 'environment in (prod,staging)' --show-labels
 kubectl get pods -l 'environment notin (staging)' --show-labels
 ```
 
+To view all the pods with a key environment and value distinct from staging and all resources with no label with the key environment.
+```
+kubectl get pods -l 'environment notin (staging)' --show-labels
+```
+# matchExpressions Selector
+
+matchExpressions label selector is more expressive in nature. It supports support set-based matching whereas matchLabels only supports exact matching. matchExpressionscan label selector can be used with or without the matchLabels selector.
+
+```
+# where environment is staging
+selector:
+    matchLabels:
+      environment: staging
+    matchExpressions:
+      - {key: tier, operator: NotIn, values: [front-end]}
+```
 
