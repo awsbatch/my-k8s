@@ -1,5 +1,6 @@
 
-![image](https://github.com/awsbatch/my-k8s/assets/110165635/6040a514-9e7e-4e19-a064-db12e886a3fd)
+![image](https://github.com/awsbatch/my-k8s/assets/110165635/ef60bcd1-6bb8-4203-9d56-d58ccb399996)
+
 
 
 # Kubernetes Deployment
