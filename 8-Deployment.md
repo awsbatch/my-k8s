@@ -1,3 +1,4 @@
+# Relationship among Pods, ReplicaSet and Deployment
 
 ![image](https://github.com/awsbatch/my-k8s/assets/110165635/ef60bcd1-6bb8-4203-9d56-d58ccb399996)
 
@@ -55,3 +56,39 @@ spec:
         resources: {}
 status: {}
 ```
+
+
+# Update a Kubernetes Deployment
+
+```
+kubectl set image deploy nginx-deploy nginx-container=nginx:1.9.1
+```
+
+
+## Check the status of the deployment
+
+```
+kubectl rollout status deployment/nginx-deploy
+```
+
+# Rollback Kubernetes Deployment
+
+```
+kubectl set image deploy nginx-deploy nginx-container=nginx:1.91 --record
+```
+
+```
+ kubectl rollout history deployment/nginx-deploy
+```
+
+```
+kubectl rollout undo deployment/nginx-deploy
+```
+
+# Scale-Up of a Kubernetes Deployment
+
+```
+kubectl scale deployment nginx-deploy –replicas=5
+``
+
+
