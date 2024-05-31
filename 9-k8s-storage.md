@@ -46,13 +46,24 @@ The cluster administrator defines storage class objects as needed. Each StorageC
 
 
 # Types of Volumes :-
+## Kubernetes Hostpath
 
-## 1. hostpath Volume: 
+Hostpath is one of the supported volume types in the Kubernetes Cluster, it is a file or directory from the nodes file system into the pod. Hostpath will mount a directory, which is present on the node and mounted inside the container
+
+A hostPath Persistent Volume must be used only in a single-node cluster
+
+Kubernetes will support hostpath in the multimode cluster, if you create a deployment set using the hostpath the container will create and start but the data will not sync in each container running in multiple hosts
+
+A host path is a type of persistent volume this will mount a file or directory from the host node’s filesystem into your pod.
+
+Advantages We can use the node-local file system as persistent volume storage. It is very useful for testing or development purposes. It can be referenced by Persistent Volume Claim or we can directly use it in the pod YAML file.
+
+
+### 1. hostpath Volume: 
 Mount a directory /var/local/dataas a volume from the host machine to /usr/share/nginx/html location of the nginx container of a pod.
 
 ![image](https://github.com/awsbatch/my-k8s/assets/110165635/704f9f50-0e01-4dfd-8bd4-4f6d39d9af73)
 
-                                  hostPath Volume
 ```
 #pod definition file with a volume 
 apiVersion: v1
