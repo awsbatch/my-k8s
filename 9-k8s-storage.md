@@ -50,4 +50,27 @@ The cluster administrator defines storage class objects as needed. Each StorageC
 ## 1. hostpath Volume: 
 Mount a directory /var/local/dataas a volume from the host machine to /usr/share/nginx/html location of the nginx container of a pod.
 
+![image](https://github.com/awsbatch/my-k8s/assets/110165635/704f9f50-0e01-4dfd-8bd4-4f6d39d9af73)
+
+                                  hostPath Volume
+```
+#pod definition file with a volume 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webserver
+spec:
+  containers:
+  - image: nginx:latest
+    name: nginx-container
+    volumeMounts:
+    - mountPath: /usr/share/nginx/html
+      name: test-vol
+  volumes:
+  - name: test-vol
+    hostPath:
+      path: /var/local/data
+      type: DirectoryOrCreate
+```
+
 
