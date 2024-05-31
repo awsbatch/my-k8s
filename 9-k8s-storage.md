@@ -1,4 +1,4 @@
-
+![image](https://github.com/awsbatch/my-k8s/assets/110165635/a303acab-e99b-48cc-a030-0fef9b93b375)
 
 # Kubernetes Storage : Concepts and Best Practices
 ### What is Kubernetes Storage?
