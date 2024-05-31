@@ -27,17 +27,27 @@ Kubernetes also supports a variety of persistent storage models, including files
 
 PV and PVC separate storage implementations from functionality and allow pods to use storage in a portable way. It also separates users and applications from storage configuration requirements.Administrators can define storage resources, together with their performance, capacity and cost parameters, in a PV. A PV also defines details like routes, IP addresses, credentials, and a lifecycle policy for the data. PVs are not portable between Kubernetes clusters. A PVC, on the other hand, is used by users or developers to describe the storage required by the application. They are portable and can be moved together with an application. Kubernetes identifies the storage available in the defined PV, and if it matches the requirements in the PVC, binds the PVC to that storage.The PVC can specify some or all of the storage parameters defined in the PV. If, for example, the PVC defines only capacity and storage tier, it can be bounded to a larger variety of PVs (any that meet those criteria).
 
+## Deployments and Stateless Sets
 
-# In this article, you will learn:
+Kubernetes provides a construct called a deployment, which comprises several cloned pods, which share the same PVC. This can lead to stability issues. A better option is to run pods as stateless sets, which allows you to clone PVCs between containers.
 
-- Kubernetes Storage Concepts
-  - Container Storage Interface (CSI)
-Volumes
-Non-Persistent Storage
-Persistent Volumes (PV) and Persistent Volume Claims (PVC)
-StorageClasses
-Dynamic Provisioning of StorageClasses
-Kubernetes Storage Best Practices
-Kubernetes Volumes Settings
-Limiting Storage Resource Consumption
-Resource Requests and Limits
+
+## StorageClasses
+
+You can configure StorageClass and assign PVs to each one. A StorageClass represents one type of storage. For example, one StorageClass may represent fast SSD storage, while another can represent magnetic drives, or remote cloud storage. This allows Kubernetes clusters to configure various types of storage according to workload requirements.
+
+A StorageClass is a Kubernetes API for setting storage parameters using dynamic configuration to enable administrators to create new volumes as needed. The StorageClass defines the volume plug-in, external provider (if applicable), and the name of the container storage interface (CSI) driver that will enable containers to interact with the storage device.
+
+## Dynamic Provisioning of StorageClasses
+
+Kubernetes supports dynamic volume configuration, allowing you to create storage volumes on demand. Therefore, administrators do not have to manually create new storage volumes and then create a PersistentVolume object for use in the cluster. When the user requests a specific type of storage, the entire process runs automatically.
+
+The cluster administrator defines storage class objects as needed. Each StorageClass refers to a volume plugin, also called a provisioner. When a user creates a PVC, the provisioner automatically provisions a volume according to the required storage criteria.
+
+
+# Types of Volumes :-
+
+## 1. hostpath Volume: 
+Mount a directory /var/local/dataas a volume from the host machine to /usr/share/nginx/html location of the nginx container of a pod.
+
+
